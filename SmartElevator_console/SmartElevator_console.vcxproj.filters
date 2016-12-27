@@ -24,12 +24,30 @@
     <ClInclude Include="targetver.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
+    <ClInclude Include="Building.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="Elevator.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="People.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>原始程式檔</Filter>
     </ClCompile>
     <ClCompile Include="SmartElevator_console.cpp">
+      <Filter>原始程式檔</Filter>
+    </ClCompile>
+    <ClCompile Include="Building.cpp">
+      <Filter>原始程式檔</Filter>
+    </ClCompile>
+    <ClCompile Include="Elevator.cpp">
+      <Filter>原始程式檔</Filter>
+    </ClCompile>
+    <ClCompile Include="People.cpp">
       <Filter>原始程式檔</Filter>
     </ClCompile>
   </ItemGroup>
