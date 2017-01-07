@@ -1,6 +1,6 @@
 #ifndef ELEVATOR_H
 #define ELEVATOR_H
-#include <vector>
+
 #include "People.h"
 using namespace std;
 #define CAPACITY 12

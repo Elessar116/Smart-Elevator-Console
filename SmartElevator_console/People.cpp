@@ -20,11 +20,13 @@ void People::GetInBuilding(int time)
 }
 void People::GoingToLeave(int time)
 {
+	currentFloor = toFloor;
 	startWaitTime = time;
 	toFloor = 1;
 }
 void People::GoingToOther(int time)
 {
+	currentFloor = toFloor;
 	startWaitTime = time;
 	do
 	{
@@ -39,9 +41,40 @@ void People::EnterElevator(int time)
 void People::LeaveElevator(int time)
 {
 	inElevTime = time - startInTime;
-
+	//ReportToArchive();
+}
+//void People::ReportToArchive(vector<Report> & archive)
+//{
+//	//Report report;
+//	/*report.serialNum = serialNum;
+//	report.startFloor = currentFloor;
+//	report.endFloor = toFloor;
+//	report.waitElevTime = waitElevTime;
+//	report.inElevTime = inElevTime;*/
+//	//archive.push_back(report);
+//	cout << "archive" << endl;
+//}
+Report People::ReportToArchive()const
+{
+	Report report;
+	report.serialNum = serialNum;
+	report.startFloor = currentFloor;
+	report.endFloor = toFloor;
+	report.waitElevTime = waitElevTime;
+	report.inElevTime = inElevTime;
+	//archive.push_back(report);
+	//cout << "archive" << endl;
+	return report;
 }
 
+int People::GetWaitTime()const
+{
+	return waitElevTime;
+}
+int People::GetInTime()const
+{
+	return inElevTime;
+}
 //void People::AddWaitTime(int waitTime)
 //{
 //	waitElevTime += waitTime;

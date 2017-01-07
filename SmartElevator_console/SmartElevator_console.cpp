@@ -8,6 +8,7 @@
 #include "People.h"
 //#include <Windows.h>
 #include <chrono>
+#include <vector>
 using namespace std;
 
 //template <class Clock>
@@ -22,6 +23,37 @@ using namespace std;
 int _tmain(int argc, _TCHAR* argv[])
 {
 	srand(static_cast<unsigned int>(time(NULL)));
+	vector<Report> arc;
+	//vector<Report> arc2;
+	People p1,p2;
+	p1.GetInBuilding(1);
+	p1.EnterElevator(7);
+	p1.LeaveElevator(15);
+	
+	//cout << p1.GetWaitTime() << endl;
+	//cout << p1.GetInTime() << endl;
+	//cout << p1.ReportToArchive().waitElevTime << endl;
+	//cout << p1.ReportToArchive().inElevTime << endl;
+	arc.push_back(p1.ReportToArchive());
+	cout << arc[0].waitElevTime << endl;
+	cout << arc[0].inElevTime << endl;
+	
+	p1.GoingToOther(20);
+	p1.EnterElevator(29);
+	p1.LeaveElevator(40);
+
+	//cout << p1.GetWaitTime() << endl;
+	//cout << p1.GetInTime() << endl;
+	//cout << p1.ReportToArchive().waitElevTime << endl;
+	//cout << p1.ReportToArchive().inElevTime << endl;
+	arc.push_back(p1.ReportToArchive());
+	cout << arc[1].waitElevTime << endl;
+	cout << arc[1].inElevTime << endl;
+	//p1.ReportToArchive(arc);
+	
+	p2.GetInBuilding(2);
+	//p2.ReportToArchive(arc);
+	
 	cout << "hello elevator" << endl;
 	std::chrono::high_resolution_clock::time_point start, end;
 	start = std::chrono::high_resolution_clock::now();

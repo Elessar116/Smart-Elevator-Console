@@ -3,7 +3,8 @@
 #define BUILDING_HEIGHT 14
 #include <time.h>
 #include <Windows.h>
-
+#include <vector>
+#include <iostream>
 struct Report
 {
 	int serialNum;
@@ -26,6 +27,7 @@ protected:
 	//int endInTime;
 	int waitElevTime;
 	int inElevTime;
+	
 public:
 	People();
 	//People();
@@ -35,11 +37,9 @@ public:
 	virtual void GoingToOther(int);
 	virtual void EnterElevator(int);
 	virtual void LeaveElevator(int);
-	//virtual void AddWaitTime(int);
-	//virtual void AddInTime(int);
-	virtual int GetWaitTime();
-	virtual int GetInTime();
-	virtual Report ReportToArchive();
+	virtual int GetWaitTime()const;
+	virtual int GetInTime()const;	
+	virtual Report ReportToArchive()const;
 };
 
 #endif
