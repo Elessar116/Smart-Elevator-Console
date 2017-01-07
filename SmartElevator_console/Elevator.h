@@ -2,6 +2,7 @@
 #define ELEVATOR_H
 
 #include "People.h"
+#include <vector>
 using namespace std;
 const int  CAPACITY = 12;
 const int TRAVEL_TIME = 3;
@@ -26,7 +27,7 @@ public:
 	void MoveTo(int floor, int& time);
 	void CallElevator(int floor);//, int toFloor);
 	void PeopleEnter(People people);
-	bool IsFull();
+	bool IsFull()const;
 	int GetCurrentFloor()const;
 
 };

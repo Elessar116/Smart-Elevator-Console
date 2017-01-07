@@ -35,7 +35,7 @@ void Elevator::PeopleEnter(People people)
 		}
 	}
 }
-bool Elevator::IsFull()
+bool Elevator::IsFull()const
 {
 	return isFull;
 }

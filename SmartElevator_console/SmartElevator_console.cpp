@@ -59,6 +59,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	v1.PeopleEnter(p1);
 	cout << v1.IsFull() << endl;
 
+	Building b1;
+	b1.Operate();
 	cout << "hello elevator" << endl;
 	std::chrono::high_resolution_clock::time_point start, end;
 	start = std::chrono::high_resolution_clock::now();

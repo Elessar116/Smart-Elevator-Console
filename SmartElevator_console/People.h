@@ -3,7 +3,7 @@
 
 #include <time.h>
 #include <Windows.h>
-#include <vector>
+
 #include <iostream>
 
 const int BUILDING_HEIGHT = 14;
