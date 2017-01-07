@@ -34,8 +34,13 @@ void People::GoingToOther(int time)
 void People::EnterElevator(int time)
 {
 	waitElevTime = time - startWaitTime;
+	startInTime = time;
 }
+void People::LeaveElevator(int time)
+{
+	inElevTime = time - startInTime;
 
+}
 
 //void People::AddWaitTime(int waitTime)
 //{

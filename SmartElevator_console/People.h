@@ -3,6 +3,16 @@
 #define BUILDING_HEIGHT 14
 #include <time.h>
 #include <Windows.h>
+
+struct Report
+{
+	int serialNum;
+	int startFloor;
+	int endFloor;
+	int waitElevTime;
+	int inElevTime;
+};
+
 class People
 {	
 protected:
@@ -11,9 +21,9 @@ protected:
 	int currentFloor;
 	int toFloor;
 	int startWaitTime;
-	int endWaitTime;
+	//int endWaitTime;
 	int startInTime;
-	int endInTime;
+	//int endInTime;
 	int waitElevTime;
 	int inElevTime;
 public:
@@ -29,7 +39,7 @@ public:
 	//virtual void AddInTime(int);
 	virtual int GetWaitTime();
 	virtual int GetInTime();
-	virtual void ReportToArchive();
+	virtual Report ReportToArchive();
 };
 
 #endif
