@@ -3,7 +3,10 @@
 
 #include "People.h"
 using namespace std;
-#define CAPACITY 12
+const int  CAPACITY = 12;
+const int TRAVEL_TIME = 3;
+const int OPEN_TIME = 3;
+const int CLOSE_TIME = 3;
 class Elevator
 {
 private:
@@ -12,7 +15,7 @@ private:
 	const int capacity = CAPACITY;
 	int totalOpTime;
 	vector<int> stopList;
-	vector<People> peoples;
+	vector<People> inPeoples;
 	bool isWorking;
 public:
 	Elevator();
@@ -22,6 +25,9 @@ public:
 	void MoveTo(int floor);
 	void CallElevator(int nowFloor);//, int toFloor);
 	void AddPeople(People addedPeople);
+	bool IsFull();
+	int GetCurrentFloor()const;
+
 };
 
 #endif

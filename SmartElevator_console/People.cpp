@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "People.h"
 using namespace std;
-People::People() :currentFloor(1), isInBuilding(false), toFloor(0), waitElevTime(0), inElevTime(0)
-{	
+
+People::People() :currentFloor(1), isInBuilding(false), toFloor(0), waitElevTime(0), inElevTime(0), isGoUp(false)
+{
 }
 People::~People()
 {
@@ -16,13 +17,28 @@ void People::GetInBuilding(int time)
 	{
 		toFloor = (rand() % BUILDING_HEIGHT) - 1;
 	} while (toFloor == 1);
-	
+	if (toFloor > currentFloor)
+	{
+		isGoUp = true;
+	}
+	else
+	{
+		isGoUp = false;
+	}
 }
 void People::GoingToLeave(int time)
 {
 	currentFloor = toFloor;
 	startWaitTime = time;
 	toFloor = 1;
+	if (toFloor > currentFloor)
+	{
+		isGoUp = true;
+	}
+	else
+	{
+		isGoUp = false;
+	}
 }
 void People::GoingToOther(int time)
 {
@@ -32,6 +48,14 @@ void People::GoingToOther(int time)
 	{
 		toFloor = rand() % (BUILDING_HEIGHT - 1) + 2;
 	} while (toFloor == 1 || toFloor == currentFloor);
+	if (toFloor > currentFloor)
+	{
+		isGoUp = true;
+	}
+	else
+	{
+		isGoUp = false;
+	}
 }
 void People::EnterElevator(int time)
 {
@@ -41,19 +65,8 @@ void People::EnterElevator(int time)
 void People::LeaveElevator(int time)
 {
 	inElevTime = time - startInTime;
-	//ReportToArchive();
 }
-//void People::ReportToArchive(vector<Report> & archive)
-//{
-//	//Report report;
-//	/*report.serialNum = serialNum;
-//	report.startFloor = currentFloor;
-//	report.endFloor = toFloor;
-//	report.waitElevTime = waitElevTime;
-//	report.inElevTime = inElevTime;*/
-//	//archive.push_back(report);
-//	cout << "archive" << endl;
-//}
+
 Report People::ReportToArchive()const
 {
 	Report report;
@@ -61,12 +74,9 @@ Report People::ReportToArchive()const
 	report.startFloor = currentFloor;
 	report.endFloor = toFloor;
 	report.waitElevTime = waitElevTime;
-	report.inElevTime = inElevTime;
-	//archive.push_back(report);
-	//cout << "archive" << endl;
+	report.inElevTime = inElevTime;	
 	return report;
 }
-
 int People::GetWaitTime()const
 {
 	return waitElevTime;
@@ -75,11 +85,3 @@ int People::GetInTime()const
 {
 	return inElevTime;
 }
-//void People::AddWaitTime(int waitTime)
-//{
-//	waitElevTime += waitTime;
-//}
-//void People::AddInTime(int inTime)
-//{
-//	inElevTime += inTime;
-//}
