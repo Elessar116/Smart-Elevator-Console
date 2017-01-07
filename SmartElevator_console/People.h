@@ -38,6 +38,7 @@ public:
 	virtual void LeaveElevator(int);
 	virtual int GetWaitTime()const;
 	virtual int GetInTime()const;	
+	virtual int GetToFloor()const;
 	virtual Report ReportToArchive()const;
 };
 

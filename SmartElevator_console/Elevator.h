@@ -16,15 +16,16 @@ private:
 	int totalOpTime;
 	vector<int> stopList;
 	vector<People> inPeoples;
+	bool isFull;
 	bool isWorking;
 public:
 	Elevator();
 	~Elevator();
 	//void MoveUp();
 	//void MoveDown();
-	void MoveTo(int floor);
-	void CallElevator(int nowFloor);//, int toFloor);
-	void AddPeople(People addedPeople);
+	void MoveTo(int floor, int& time);
+	void CallElevator(int floor);//, int toFloor);
+	void PeopleEnter(People people);
 	bool IsFull();
 	int GetCurrentFloor()const;
 

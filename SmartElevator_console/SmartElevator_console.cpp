@@ -54,6 +54,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	p2.GetInBuilding(2);
 	//p2.ReportToArchive(arc);
 	
+
+	Elevator v1;
+	v1.PeopleEnter(p1);
+	cout << v1.IsFull() << endl;
+
 	cout << "hello elevator" << endl;
 	std::chrono::high_resolution_clock::time_point start, end;
 	start = std::chrono::high_resolution_clock::now();

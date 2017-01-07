@@ -67,16 +67,7 @@ void People::LeaveElevator(int time)
 	inElevTime = time - startInTime;
 }
 
-Report People::ReportToArchive()const
-{
-	Report report;
-	report.serialNum = serialNum;
-	report.startFloor = currentFloor;
-	report.endFloor = toFloor;
-	report.waitElevTime = waitElevTime;
-	report.inElevTime = inElevTime;	
-	return report;
-}
+
 int People::GetWaitTime()const
 {
 	return waitElevTime;
@@ -84,4 +75,18 @@ int People::GetWaitTime()const
 int People::GetInTime()const
 {
 	return inElevTime;
+}
+int People::GetToFloor()const
+{
+	return toFloor;
+}
+Report People::ReportToArchive()const
+{
+	Report report;
+	report.serialNum = serialNum;
+	report.startFloor = currentFloor;
+	report.endFloor = toFloor;
+	report.waitElevTime = waitElevTime;
+	report.inElevTime = inElevTime;
+	return report;
 }
