@@ -42,6 +42,7 @@ public:
 	virtual int GetToFloor()const; 
 	virtual int GetCurrentFloor()const;
 	virtual bool IsGoUp()const;
+	virtual void SetSerial(const int);
 	virtual Report ReportToArchive()const;
 };
 

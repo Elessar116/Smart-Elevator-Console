@@ -100,6 +100,10 @@ bool People::IsGoUp()const
 {
 	return isGoUp;
 }
+void People::SetSerial(const int s)
+{
+	serialNum = s;
+}
 Report People::ReportToArchive()const
 {
 	Report report;

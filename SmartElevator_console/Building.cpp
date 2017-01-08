@@ -5,6 +5,10 @@ using namespace std;
 
 Building::Building() :time(0), elevator1(), elevator2()
 {
+	for (unsigned int i = 0; i < peoples.size(); i++)
+	{
+		peoples[i].SetSerial(i + 1);
+	}
 }
 Building::~Building()
 {
@@ -115,8 +119,68 @@ void Building::UpdateElevator()
 		}
 	}
 }
+void Building::GetPeopleIn(const int time)
+{
+	int fraction = 50;
+	int upper = PEOPLE_NUM / fraction +1;
+	int num = rand() % upper;
+	if (peoples.size() > num)
+	{
+		vector<int>index;
+		for (int i = 0; i < num; i++)
+		{
+			int randIndex = rand() % peoples.size();//可能會重複
+			if (find(index.begin(), index.end(), randIndex) == index.end())
+			{
+				index.push_back(randIndex);
+			}
+		}
+		for_each(index.begin(), index.end(), [&](int x){peoples[x].GetInBuilding(time); GetInQueue(peoples[x]); });
+		sort(index.begin(), index.end());
+		reverse(index.begin(), index.end());
+		for_each(index.begin(), index.end(), [&](int x){peoples.erase(peoples.begin() + x); });
+	}
+	else
+	{
+		//cout << "人太少" << endl;
+	}
+	
+}
+void Building::GetPeopleToOther(const int time)
+{
+	for (int i = 0; i < 14; i++)
+	{
+		int upper = floors[i].size() / 5 ;
+		if (upper != 0)
+		{
+			int num = rand() % upper;
+			vector<int> index;
+			for (int j = 0; j < num; j++)
+			{
+				int randIndex = rand() % floors[i].size();
+				if (find(index.begin(), index.end(), randIndex) == index.end())
+				{
+					index.push_back(randIndex);
+				}
+			}
+			for_each(index.begin(), index.end(), [&](int x){floors[i][x].GoingToOther(time); GetInQueue(floors[i][x]); });
+			sort(index.begin(), index.end());
+			reverse(index.begin(), index.end());
+			for_each(index.begin(), index.end(), [&](int x){floors[i].erase(floors[i].begin() + x); });
+		}
+	}
+}
 void Building::Operate()
 {
+	time = 0;
+	while (time < 86400)
+	{
+		GetPeopleIn(time);
+		GetPeopleToOther(time);
+		
+	}
+
+
 	//waitingLinesDown[13].push(peoples[297]);
 	peoples[199].GetInBuilding(time);
 	GetInQueue(peoples[199]);
