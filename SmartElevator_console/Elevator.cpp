@@ -12,7 +12,7 @@ Elevator::~Elevator()
 //{
 //
 //}
-void Elevator::PeopleEnter(People people, const int time)
+void Elevator::PeopleEnter(People& people, const int time)
 {
 	if (currentPeople >= CAPACITY)
 	{
@@ -20,9 +20,9 @@ void Elevator::PeopleEnter(People people, const int time)
 	}
 	else
 	{
-		inPeoples.push_back(people);
-		currentPeople += 1;
 		people.EnterElevator(time);
+		inPeoples.push_back(people);
+		currentPeople += 1;		
 		if (find(stopList.begin(), stopList.end(), people.GetToFloor()) == stopList.end())
 		{
 			stopList.push_back(people.GetToFloor());
@@ -37,7 +37,7 @@ void Elevator::PeopleEnter(People people, const int time)
 		}
 	}
 }
-vector<People> Elevator::PeopleLeave(const int floor , const int time)
+vector<People> Elevator::PeopleLeave(const int time)
 {
 	vector<People> leave;
 	if (inPeoples.empty() == false)
@@ -46,16 +46,17 @@ vector<People> Elevator::PeopleLeave(const int floor , const int time)
 		//for_each(inPeoples.begin(),inPeoples.end(),)
 		for (unsigned int i = 0; i < inPeoples.size(); i++)
 		{
-			if (inPeoples[i].GetToFloor() == floor)
+			if (inPeoples[i].GetToFloor() == currentFloor)
 			{
 				index.push_back(i);
 			}
 		}
+		for_each(index.begin(), index.end(), [&](int x){inPeoples[x].LeaveElevator(time); });
 		for_each(index.begin(), index.end(), [&](int x){leave.push_back(inPeoples[x]); });
 		reverse(index.begin(), index.end());
 		for_each(index.begin(), index.end(), [&](int x){inPeoples.erase(inPeoples.begin() + x); });
 	}
-	for_each(leave.begin(), leave.end(), [&](People p){p.LeaveElevator(time); });
+	//for_each(leave.begin(), leave.end(), [&](People& p){p.LeaveElevator(time); });
 	return leave;
 }
 void Elevator::UpdateStopList(vector<int> stops)

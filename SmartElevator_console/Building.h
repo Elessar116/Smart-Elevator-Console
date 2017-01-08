@@ -12,9 +12,11 @@ private:
 	Elevator elevator2;	
 	vector<queue<People>> waitingLinesUp{ BUILDING_HEIGHT, queue<People>() };
 	vector<queue<People>> waitingLinesDown{ BUILDING_HEIGHT, queue<People>() };
+	vector<vector<People>> floors{ BUILDING_HEIGHT, vector<People>() };
 	vector<int> waitFloorsUp;
 	vector<int> waitFloorsDown;
 	vector<People> peoples{ PEOPLE_NUM, People() };
+	vector<Report> archive;
 public:
 	Building();
 	virtual~Building();	

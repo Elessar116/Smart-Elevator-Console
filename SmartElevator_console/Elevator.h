@@ -27,8 +27,8 @@ public:
 	//void MoveDown();
 	//void MoveTo(int floor, int& time);
 	//void CallElevator(int floor);//, int toFloor);
-	void PeopleEnter(People people, const int time);
-	vector<People> PeopleLeave(const int floor, const int time);
+	void PeopleEnter(People& people, const int time);
+	vector<People> PeopleLeave(const int time);
 	void UpdateStopList(vector<int>);
 	void UpdateStopList(const int);
 	bool IsFull()const;

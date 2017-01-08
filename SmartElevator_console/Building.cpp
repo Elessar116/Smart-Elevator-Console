@@ -140,23 +140,38 @@ void Building::Operate()
 	elevator1.Work(time);
 	elevator1.OpenDoor(time);
 	//cout << waitFloorsUp.empty() << endl;
-	//elevator1.ShowStopList();
+	
 	//peoples[199].EnterElevator(time);
 	if (elevator1.IsFull() == false)
 	{
 		elevator1.PeopleEnter(peoples[199],time);
 	}
+	elevator1.ShowStopList();
 	elevator1.CloseDoor(time);
 	//cout << "go up: " << elevator1.IsGoUp() << endl;
 	elevator1.Work(time);
 	elevator1.OpenDoor(time);
+	vector<People> leave = elevator1.PeopleLeave(time);
+	for_each(leave.begin(), leave.end(), [&](People& p){archive.push_back(p.ReportToArchive()); });
+	for_each(leave.begin(), leave.end(), [&](People& p){floors[elevator1.GetCurrentFloor() + 1].push_back(p); });
+	leave.clear();
+	//cout << "floor people : " << floors[elevator1.GetCurrentFloor() + 1][0].GetInTime() << endl;
+
+	elevator1.CloseDoor(time);
+	cout << "arc wait: " << archive[0].waitElevTime << endl;
+	cout << "arc in: " << archive[0].inElevTime << endl;
+	cout << "wait time: " << leave[0].GetWaitTime() << endl;
+	cout << "in time: " << leave[0].GetInTime() << endl;
 	//peoples[199].LeaveElevator(time);
 	cout << "floor: " << elevator1.GetCurrentFloor() << endl;
 	elevator1.ShowStopList();
 	cout << "time: " << time << endl;
-	cout << "wait time: " << peoples[199].GetWaitTime() << endl;
-	cout << "in time: " << peoples[199].GetInTime() << endl;
+	//cout << "wait time: " << peoples[199].GetWaitTime() << endl;
+	//cout << "in time: " << peoples[199].GetInTime() << endl;
 	cout << "op time: " << elevator1.GetOpTime() << endl;
+
+
+
 	//cout << time << endl;
 	//elevator1.UpdateStopList(waitFloorsUp);
 	cout << peoples[199].GetToFloor() << endl << endl;
