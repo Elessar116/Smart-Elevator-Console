@@ -2,7 +2,7 @@
 #include "Elevator.h"
 #include <algorithm>
 using namespace std;
-Elevator::Elevator() :currentFloor(1), currentPeople(0), totalOpTime(0),isFull(false), isWorking(false)
+Elevator::Elevator() :currentFloor(1), currentPeople(0), totalOpTime(0), isFull(false), isWorking(false), isGoUp(false)
 {
 }
 Elevator::~Elevator()
@@ -85,4 +85,9 @@ void Elevator::SetToDown()
 int Elevator::GetCurrentFloor()const
 {
 	return currentFloor;
+}
+void Elevator::ShowStopList()const
+{
+	for_each(stopList.begin(), stopList.end(), [](int x){cout << x << " "; });
+	cout << endl;
 }

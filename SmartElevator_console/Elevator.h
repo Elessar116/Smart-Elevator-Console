@@ -38,6 +38,7 @@ public:
 	void SetToUp();
 	void SetToDown();
 	int GetCurrentFloor()const;
+	void ShowStopList()const;
 
 };
 

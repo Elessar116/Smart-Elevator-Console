@@ -9,12 +9,11 @@ class Building
 private:
 	int time;
 	Elevator elevator1;
-	Elevator elevator2;
-	//vector<int> a(1,int(10));
+	Elevator elevator2;	
 	vector<queue<People>> waitingLinesUp{ BUILDING_HEIGHT, queue<People>() };
 	vector<queue<People>> waitingLinesDown{ BUILDING_HEIGHT, queue<People>() };
 	vector<int> waitFloorsUp;
-	vector<int> waitFloorDown;
+	vector<int> waitFloorsDown;
 	vector<People> peoples{ PEOPLE_NUM, People() };
 public:
 	Building();
