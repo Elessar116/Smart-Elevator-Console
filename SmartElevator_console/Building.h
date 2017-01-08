@@ -22,6 +22,7 @@ public:
 	virtual void UpdateElevator();
 
 	virtual void Operate();
+	virtual int GetTime()const;
 };
 
 #endif

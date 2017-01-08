@@ -39,6 +39,7 @@ public:
 	void SetToDown();
 	int GetCurrentFloor()const;
 	void ShowStopList()const;
+	void Work(int&);
 
 };
 

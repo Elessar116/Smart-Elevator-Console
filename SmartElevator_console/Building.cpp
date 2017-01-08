@@ -112,7 +112,7 @@ void Building::UpdateElevator()
 		}
 		else
 		{
-			elevator1.SetToRest();
+			elevator1.SetToRest();//do something when rest
 		}
 	}
 }
@@ -136,6 +136,20 @@ void Building::Operate()
 	UpdateElevator();
 	cout << elevator1.IsWorking() << endl;
 	cout << elevator1.IsGoUp() << endl;
+	elevator1.ShowStopList();
+	elevator1.Work(time);
+	cout << waitFloorsUp.empty() << endl;
+	peoples[199].EnterElevator(time);
+	if (elevator1.IsFull() == false)
+	{
+		elevator1.PeopleEnter(peoples[199]);
+	}
+	cout << "wait time: " << peoples[199].GetWaitTime() << endl;
+	cout << time << endl;
 	//elevator1.UpdateStopList(waitFloorsUp);
 	cout << endl << peoples[199].GetToFloor() << endl << endl;
+}
+int Building::GetTime()const
+{
+	return time;
 }

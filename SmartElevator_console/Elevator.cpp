@@ -88,6 +88,31 @@ int Elevator::GetCurrentFloor()const
 }
 void Elevator::ShowStopList()const
 {
-	for_each(stopList.begin(), stopList.end(), [](int x){cout << x << " "; });
+	for_each(stopList.begin(), stopList.end(), [](int x){cout << "stop list: " << x << " "; });
 	cout << endl;
+}
+void Elevator::Work(int& time)
+{
+	if (find(stopList.begin(), stopList.end(), currentFloor) != stopList.end())//is at destination
+	{
+		time += 3;//open door
+		stopList.erase(remove(stopList.begin(), stopList.end(), currentFloor));
+	}
+	else
+	{
+		if (isGoUp)
+		{
+			
+			int min = *min_element(stopList.begin(), stopList.end());
+			time += ((min - currentFloor) * 3);
+			totalOpTime += time;
+			stopList.erase(remove(stopList.begin(), stopList.end(), min));
+		}
+		else
+		{
+			int max = *max_element(stopList.begin(), stopList.end());
+			time += ((currentFloor - max) * 3);
+			stopList.erase(remove(stopList.begin(), stopList.end(), max));
+		}
+	}
 }
