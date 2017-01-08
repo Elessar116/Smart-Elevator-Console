@@ -33,13 +33,26 @@ void Building::GetInQueue(People people)
 }
 void Building::UpdateElevator()
 {
-	if (elevator1.IsGoUp())
+	if (elevator1.IsWorking())
 	{
 		elevator1.UpdateStopList(waitFloorsUp);
 	}
 	else
 	{
+		if (waitFloorsUp.empty() == true && waitFloorDown.empty() == false)
+		{
+			if (waitFloorDown.size() > 1)
+			{
+				int max = *max_element(waitFloorDown.begin(), waitFloorDown.end());
+				//int min = *min_element(waitFloorDown.begin(), waitFloorDown.end());
+				elevator1.UpdateStopList(max);
+				elevator1.SetToWork();
+			}
+		}
+		else if (waitFloorsUp.empty() == false && waitFloorDown.empty() == true)
+		{
 
+		}
 	}
 }
 void Building::Operate()

@@ -47,6 +47,13 @@ void Elevator::UpdateStopList(vector<int> stops)
 	}
 	//cout << endl;
 }
+void Elevator::UpdateStopList(int stop)
+{	
+	if (find(stopList.begin(), stopList.end(), stop) == stopList.end())
+	{
+		stopList.push_back(stop);
+	}	
+}
 bool Elevator::IsFull()const
 {
 	return isFull;
@@ -58,4 +65,24 @@ bool Elevator::IsWorking()const
 bool Elevator::IsGoUp()const
 {
 	return isGoUp;
-})
+}
+void Elevator::SetToWork()
+{
+	isWorking = true;
+}
+void Elevator::SetToRest()
+{
+	isWorking = false;
+}
+void Elevator::SetToUp()
+{
+	isGoUp = true;
+}
+void Elevator::SetToDown()
+{
+	isGoUp = false;
+}
+int Elevator::GetCurrentFloor()const
+{
+	return currentFloor;
+}

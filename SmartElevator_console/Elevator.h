@@ -29,9 +29,14 @@ public:
 	void CallElevator(int floor);//, int toFloor);
 	void PeopleEnter(People people);
 	void UpdateStopList(vector<int>);
+	void UpdateStopList(int);
 	bool IsFull()const;
 	bool IsWorking()const;
 	bool IsGoUp()const;
+	void SetToWork();
+	void SetToRest();
+	void SetToUp();
+	void SetToDown();
 	int GetCurrentFloor()const;
 
 };
