@@ -14,11 +14,29 @@ Elevator::~Elevator()
 //}
 void Elevator::PeopleEnter(People& people, const int time)
 {
-	if (currentPeople >= CAPACITY)
+	/*if (currentPeople >= CAPACITY)
 	{
 		cout << "error: elevator is full" << endl;
+	}*/
+	if (currentPeople == 0)///////////////////////////////////
+	{
+		people.EnterElevator(time);
+		inPeoples.push_back(people);
+		currentPeople += 1;
+		if (find(stopList.begin(), stopList.end(), people.GetToFloor()) == stopList.end())
+		{
+			stopList.push_back(people.GetToFloor());
+		}
+		if (people.GetToFloor() > currentFloor)
+		{
+			isGoUp = true;
+		}
+		else
+		{
+			isGoUp = false;
+		}
 	}
-	else
+	else if (currentPeople<CAPACITY)
 	{
 		people.EnterElevator(time);
 		inPeoples.push_back(people);
@@ -55,8 +73,26 @@ vector<People> Elevator::PeopleLeave(const int time)
 		for_each(index.begin(), index.end(), [&](int x){leave.push_back(inPeoples[x]); });
 		reverse(index.begin(), index.end());
 		for_each(index.begin(), index.end(), [&](int x){inPeoples.erase(inPeoples.begin() + x); });
+		currentPeople -= leave.size();
+		if (currentPeople == CAPACITY)
+		{
+			isFull = true;
+		}
+		else
+		{
+			isFull = false;
+		}
 	}
 	//for_each(leave.begin(), leave.end(), [&](People& p){p.LeaveElevator(time); });
+	if (currentPeople == 0)
+	{
+		isWorking = false;
+	}
+	else
+	{
+		isWorking = true;
+	}
+
 	return leave;
 }
 void Elevator::UpdateStopList(vector<int> stops)
@@ -128,9 +164,8 @@ void Elevator::Work(int& time)
 	else
 	{
 		if (isGoUp)
-		{
-			
-			int min = *min_element(stopList.begin(), stopList.end());			
+		{			
+			int min = *min_element(stopList.begin(), stopList.end());
 			time += ((min - currentFloor) * 3);
 			totalOpTime += ((min - currentFloor) * 3);
 			stopList.erase(remove(stopList.begin(), stopList.end(), min));

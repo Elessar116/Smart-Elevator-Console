@@ -49,7 +49,7 @@ void Building::UpdateElevator()
 	else
 	{
 		if (waitFloorsUp.empty() == true && waitFloorsDown.empty() == false)
-		{			
+		{
 			int max = *max_element(waitFloorsDown.begin(), waitFloorsDown.end());
 			elevator1.UpdateStopList(max);//可能出現已經停再那樓的情況要注意
 			elevator1.SetToWork();
@@ -107,8 +107,7 @@ void Building::UpdateElevator()
 				{
 					elevator1.SetToDown();
 				}
-			}
-			
+			}			
 		}
 		else
 		{
@@ -160,8 +159,8 @@ void Building::Operate()
 	elevator1.CloseDoor(time);
 	cout << "arc wait: " << archive[0].waitElevTime << endl;
 	cout << "arc in: " << archive[0].inElevTime << endl;
-	cout << "wait time: " << leave[0].GetWaitTime() << endl;
-	cout << "in time: " << leave[0].GetInTime() << endl;
+	//cout << "wait time: " << leave[0].GetWaitTime() << endl;
+	//cout << "in time: " << leave[0].GetInTime() << endl;
 	//peoples[199].LeaveElevator(time);
 	cout << "floor: " << elevator1.GetCurrentFloor() << endl;
 	elevator1.ShowStopList();
@@ -169,12 +168,20 @@ void Building::Operate()
 	//cout << "wait time: " << peoples[199].GetWaitTime() << endl;
 	//cout << "in time: " << peoples[199].GetInTime() << endl;
 	cout << "op time: " << elevator1.GetOpTime() << endl;
-
-
-
+	peoples[0].GetInBuilding(time);
+	GetInQueue(peoples[0]);
+	//floors[elevator1.GetCurrentFloor() + 1][0].GoingToOther(time);
+	//GetInQueue(floors[elevator1.GetCurrentFloor() + 1][0]);
+	UpdateElevator();
+	elevator1.Work(time);
+	elevator1.OpenDoor(time);
+	if (elevator1.IsFull() == false)
+	{
+		elevator1.PeopleEnter(peoples[0], time);
+	}
 	//cout << time << endl;
 	//elevator1.UpdateStopList(waitFloorsUp);
-	cout << peoples[199].GetToFloor() << endl << endl;
+	//cout << peoples[199].GetToFloor() << endl << endl;
 }
 int Building::GetTime()const
 {

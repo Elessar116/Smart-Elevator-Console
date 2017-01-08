@@ -5,6 +5,18 @@ using namespace std;
 People::People() :serialNum(0),currentFloor(1), isInBuilding(false), toFloor(0), waitElevTime(0), inElevTime(0), isGoUp(false)
 {
 }
+People::People(const People& p)
+{
+	serialNum = p.serialNum;
+	isInBuilding = p.isInBuilding;
+	currentFloor = p.currentFloor;
+	toFloor = p.toFloor;
+	startWaitTime = p.startWaitTime;
+	startInTime = p.startInTime;
+	waitElevTime = p.waitElevTime;
+	inElevTime = p.inElevTime;
+	isGoUp = p.isGoUp;
+}
 People::~People()
 {
 }

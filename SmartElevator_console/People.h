@@ -30,6 +30,7 @@ protected:
 	bool isGoUp;
 public:
 	People();
+	People(const People&);
 	virtual ~People();
 	virtual void GetInBuilding(const int);
 	virtual void GoingToLeave(const int);
