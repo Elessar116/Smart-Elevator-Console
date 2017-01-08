@@ -13,12 +13,13 @@ class Elevator
 private:
 	int currentFloor;
 	int currentPeople;
-	const int capacity = CAPACITY;
+	//const int capacity = CAPACITY;
 	int totalOpTime;
 	vector<int> stopList;
 	vector<People> inPeoples;
 	bool isFull;
 	bool isWorking;
+	bool isGoUp;
 public:
 	Elevator();
 	~Elevator();
@@ -27,7 +28,10 @@ public:
 	void MoveTo(int floor, int& time);
 	void CallElevator(int floor);//, int toFloor);
 	void PeopleEnter(People people);
+	void UpdateStopList(vector<int>);
 	bool IsFull()const;
+	bool IsWorking()const;
+	bool IsGoUp()const;
 	int GetCurrentFloor()const;
 
 };

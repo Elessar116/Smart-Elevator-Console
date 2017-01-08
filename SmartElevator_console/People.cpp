@@ -46,7 +46,7 @@ void People::GoingToOther(int time)
 	startWaitTime = time;
 	do
 	{
-		toFloor = rand() % (BUILDING_HEIGHT - 1) + 2;
+		toFloor = (rand() % BUILDING_HEIGHT) - 1;
 	} while (toFloor == 1 || toFloor == currentFloor);
 	if (toFloor > currentFloor)
 	{
@@ -79,6 +79,14 @@ int People::GetInTime()const
 int People::GetToFloor()const
 {
 	return toFloor;
+}
+int People::GetCurrentFloor()const
+{
+	return currentFloor;
+}
+bool People::IsGoUp()const
+{
+	return isGoUp;
 }
 Report People::ReportToArchive()const
 {

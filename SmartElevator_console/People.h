@@ -38,7 +38,9 @@ public:
 	virtual void LeaveElevator(int);
 	virtual int GetWaitTime()const;
 	virtual int GetInTime()const;	
-	virtual int GetToFloor()const;
+	virtual int GetToFloor()const; 
+	virtual int GetCurrentFloor()const;
+	virtual bool IsGoUp()const;
 	virtual Report ReportToArchive()const;
 };
 
