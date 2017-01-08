@@ -2,13 +2,13 @@
 #include "People.h"
 using namespace std;
 
-People::People() :currentFloor(1), isInBuilding(false), toFloor(0), waitElevTime(0), inElevTime(0), isGoUp(false)
+People::People() :serialNum(0),currentFloor(1), isInBuilding(false), toFloor(0), waitElevTime(0), inElevTime(0), isGoUp(false)
 {
 }
 People::~People()
 {
 }
-void People::GetInBuilding(int time)
+void People::GetInBuilding(const int time)
 {
 	startWaitTime = time;
 	currentFloor = 1;
@@ -26,7 +26,7 @@ void People::GetInBuilding(int time)
 		isGoUp = false;
 	}
 }
-void People::GoingToLeave(int time)
+void People::GoingToLeave(const int time)
 {
 	currentFloor = toFloor;
 	startWaitTime = time;
@@ -40,7 +40,7 @@ void People::GoingToLeave(int time)
 		isGoUp = false;
 	}
 }
-void People::GoingToOther(int time)
+void People::GoingToOther(const int time)
 {
 	currentFloor = toFloor;
 	startWaitTime = time;
@@ -57,12 +57,12 @@ void People::GoingToOther(int time)
 		isGoUp = false;
 	}
 }
-void People::EnterElevator(int time)
+void People::EnterElevator(const int time)
 {
 	waitElevTime = time - startWaitTime;
 	startInTime = time;
 }
-void People::LeaveElevator(int time)
+void People::LeaveElevator(const int time)
 {
 	inElevTime = time - startInTime;
 }

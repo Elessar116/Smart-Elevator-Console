@@ -25,11 +25,12 @@ public:
 	~Elevator();
 	//void MoveUp();
 	//void MoveDown();
-	void MoveTo(int floor, int& time);
-	void CallElevator(int floor);//, int toFloor);
-	void PeopleEnter(People people);
+	//void MoveTo(int floor, int& time);
+	//void CallElevator(int floor);//, int toFloor);
+	void PeopleEnter(People people, const int time);
+	vector<People> PeopleLeave(const int floor, const int time);
 	void UpdateStopList(vector<int>);
-	void UpdateStopList(int);
+	void UpdateStopList(const int);
 	bool IsFull()const;
 	bool IsWorking()const;
 	bool IsGoUp()const;
@@ -38,9 +39,11 @@ public:
 	void SetToUp();
 	void SetToDown();
 	int GetCurrentFloor()const;
+	int GetOpTime()const;
 	void ShowStopList()const;
 	void Work(int&);
-
+	void OpenDoor(int&);
+	void CloseDoor(int&);
 };
 
 #endif

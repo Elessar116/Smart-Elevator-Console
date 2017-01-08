@@ -56,7 +56,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	
 
 	Elevator v1;
-	v1.PeopleEnter(p1);
+	//v1.PeopleEnter(p1);
 	cout << v1.IsFull() << endl;
 
 	Building b1;

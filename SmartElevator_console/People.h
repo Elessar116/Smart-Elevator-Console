@@ -31,11 +31,11 @@ protected:
 public:
 	People();
 	virtual ~People();
-	virtual void GetInBuilding(int);
-	virtual void GoingToLeave(int);
-	virtual void GoingToOther(int);
-	virtual void EnterElevator(int);
-	virtual void LeaveElevator(int);
+	virtual void GetInBuilding(const int);
+	virtual void GoingToLeave(const int);
+	virtual void GoingToOther(const int);
+	virtual void EnterElevator(const int);
+	virtual void LeaveElevator(const int);
 	virtual int GetWaitTime()const;
 	virtual int GetInTime()const;	
 	virtual int GetToFloor()const; 

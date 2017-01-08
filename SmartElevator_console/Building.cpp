@@ -138,16 +138,28 @@ void Building::Operate()
 	cout << elevator1.IsGoUp() << endl;
 	elevator1.ShowStopList();
 	elevator1.Work(time);
-	cout << waitFloorsUp.empty() << endl;
-	peoples[199].EnterElevator(time);
+	elevator1.OpenDoor(time);
+	//cout << waitFloorsUp.empty() << endl;
+	//elevator1.ShowStopList();
+	//peoples[199].EnterElevator(time);
 	if (elevator1.IsFull() == false)
 	{
-		elevator1.PeopleEnter(peoples[199]);
+		elevator1.PeopleEnter(peoples[199],time);
 	}
+	elevator1.CloseDoor(time);
+	//cout << "go up: " << elevator1.IsGoUp() << endl;
+	elevator1.Work(time);
+	elevator1.OpenDoor(time);
+	//peoples[199].LeaveElevator(time);
+	cout << "floor: " << elevator1.GetCurrentFloor() << endl;
+	elevator1.ShowStopList();
+	cout << "time: " << time << endl;
 	cout << "wait time: " << peoples[199].GetWaitTime() << endl;
-	cout << time << endl;
+	cout << "in time: " << peoples[199].GetInTime() << endl;
+	cout << "op time: " << elevator1.GetOpTime() << endl;
+	//cout << time << endl;
 	//elevator1.UpdateStopList(waitFloorsUp);
-	cout << endl << peoples[199].GetToFloor() << endl << endl;
+	cout << peoples[199].GetToFloor() << endl << endl;
 }
 int Building::GetTime()const
 {
